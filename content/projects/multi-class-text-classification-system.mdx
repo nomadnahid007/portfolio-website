@@ -1,0 +1,56 @@
+---
+title: "Multi-Class Text Classification System"
+slug: "multi-class-text-classification-system"
+summary: "A large-scale text classification project comparing machine learning and deep learning models across a 340K+ question-answer dataset."
+year: "2025"
+role: "ML Developer"
+client: "Academic Project"
+stack:
+  - "Python"
+  - "TensorFlow"
+  - "Scikit-learn"
+  - "NLP"
+featured: true
+order: 4
+cover: "/images/project-text-classification.svg"
+outcome: "Benchmarked multiple modeling strategies and achieved the strongest result with a BiLSTM at roughly 72.5% accuracy."
+---
+
+## Problem
+
+Text classification becomes significantly harder when the dataset is large, the classes are numerous, and the quality of feature representation affects performance in very different ways across models.
+
+## Context
+
+This project used a 340K+ question-answer dataset spanning 10 categories. The purpose was not just to build one working classifier, but to compare multiple classical and deep learning approaches in a structured way.
+
+## Goal
+
+Evaluate different text representation and modeling strategies to identify which combinations performed best for multi-class classification.
+
+## Solution
+
+The work compared several layers of the pipeline:
+
+- Feature approaches including BoW, TF-IDF, GloVe, and Skip-gram embeddings.
+- Classical models such as Logistic Regression and Naive Bayes.
+- Deep learning architectures including RNN, GRU, LSTM, and BiLSTM.
+- Hyperparameter tuning to improve model performance and make comparisons more meaningful.
+
+## Process
+
+I treated the project as a benchmarking exercise. Rather than jumping directly to a single model, I built a comparison framework that made it easier to see how representation choices affected downstream results.
+
+## Challenges
+
+The biggest challenge was keeping the evaluation disciplined. With many model and embedding combinations, it is easy to optimize loosely and lose sight of what the results actually mean. Consistency in preprocessing and comparison was essential.
+
+## Outcomes
+
+- Built and compared a full range of machine learning and deep learning baselines.
+- Achieved the best result with a BiLSTM at approximately 72.5% accuracy and a strong F1-score.
+- Strengthened practical understanding of feature engineering, embedding choices, and sequence modeling tradeoffs.
+
+## Reflection
+
+This project taught me that strong ML work depends as much on careful comparison and disciplined evaluation as it does on model complexity. Method matters.

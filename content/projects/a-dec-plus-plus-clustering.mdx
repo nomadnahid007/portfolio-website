@@ -1,0 +1,56 @@
+---
+title: "A-DEC++ Text Clustering"
+slug: "a-dec-plus-plus-clustering"
+summary: "An adaptive deep embedding clustering framework for unsupervised text clustering using Sentence-BERT representations and custom clustering refinements."
+year: "2025"
+role: "ML Research Project"
+client: "CSE425 Academic Project"
+stack:
+  - "Python"
+  - "Sentence-BERT"
+  - "PyTorch"
+  - "Scikit-learn"
+featured: false
+order: 5
+cover: "/images/project-adec-clustering.svg"
+outcome: "Benchmarked a custom A-DEC++ clustering approach on DBpedia and 20 Newsgroups using multiple clustering metrics."
+---
+
+## Problem
+
+Text clustering becomes difficult when documents need to be grouped meaningfully without labeled supervision. Strong embeddings help, but clustering quality still depends on how the latent space and assignment updates are handled.
+
+## Context
+
+This project was developed for CSE425 and focused on unsupervised text clustering. The primary dataset was DBpedia, with 20 Newsgroups used to test generalization beyond the main benchmark.
+
+## Goal
+
+Design and evaluate an adaptive clustering framework that could improve on baseline clustering approaches by using a neural embedding pipeline with refined confidence-aware updates.
+
+## Solution
+
+The project combined several technical layers:
+
+- Sentence-BERT embeddings using `all-MiniLM-L6-v2`.
+- A custom latent projection network in PyTorch.
+- Multiple baseline clustering methods for comparison, including KMeans, Spectral Clustering, Agglomerative Clustering, and GMM.
+- A custom adaptive deep embedding clustering variant, A-DEC++, with confidence filtering, temperature scheduling, and centroid refinement.
+
+## Process
+
+I treated the work as both a modeling and evaluation problem. After generating sentence embeddings and learning a stronger latent representation, I compared multiple clustering strategies using a common evaluation pipeline.
+
+## Challenges
+
+The hardest part was keeping the custom clustering updates stable. Unsupervised systems can collapse or drift if confidence thresholds, temperature schedules, or centroid updates are not tuned carefully.
+
+## Outcomes
+
+- Built a full unsupervised text clustering pipeline with baseline comparisons.
+- Evaluated performance using Hungarian accuracy, NMI, ARI, Silhouette Score, and Davies-Bouldin Index.
+- Extended the work beyond one dataset by checking how the method behaved on 20 Newsgroups.
+
+## Reflection
+
+This project deepened my interest in NLP and representation learning. It also reinforced how much careful evaluation matters when there is no supervised ground truth guiding the training objective directly.

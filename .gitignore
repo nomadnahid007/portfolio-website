@@ -1,0 +1,10 @@
+.next
+node_modules
+out
+dist
+.DS_Store
+*.log
+.tmp-cse425
+*.tsbuildinfo
+Nahid Hassan.JPG
+Nahid Hassan_pic.jpg
