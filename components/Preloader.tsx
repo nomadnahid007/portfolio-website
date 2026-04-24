@@ -16,9 +16,9 @@ export function Preloader() {
       return;
     }
 
-    const holdTimer = window.setTimeout(() => setPhase("hold"), 1050);
-    const exitTimer = window.setTimeout(() => setPhase("exit"), 1960);
-    const hideTimer = window.setTimeout(() => setVisible(false), 2360);
+    const holdTimer = window.setTimeout(() => setPhase("hold"), 920);
+    const exitTimer = window.setTimeout(() => setPhase("exit"), 2140);
+    const hideTimer = window.setTimeout(() => setVisible(false), 2540);
 
     return () => {
       window.clearTimeout(holdTimer);
@@ -38,18 +38,21 @@ export function Preloader() {
       onClick={() => setVisible(false)}
       aria-label="Skip intro"
     >
-      <div className="preloader-rails" aria-hidden="true">
-        <span className="preloader-rail preloader-rail-left" />
-        <span className="preloader-rail preloader-rail-center" />
-        <span className="preloader-rail preloader-rail-right" />
+      <div className="preloader-stage" aria-hidden="true">
+        <span className="preloader-orbit" />
+        <span className="preloader-scan preloader-scan-top" />
+        <span className="preloader-scan preloader-scan-bottom" />
+        <span className="preloader-grid" />
+        <span className="preloader-glow" />
       </div>
       <div className="preloader-content overflow-hidden px-6 text-center">
-        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-3 font-serif text-[2.5rem] leading-none sm:gap-x-4 sm:text-6xl">
+        <span className="preloader-kicker">Nahid Hassan</span>
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-3 font-serif text-[2.5rem] leading-none sm:gap-x-4 sm:text-6xl">
           {words.map((word, index) => (
             <span
               key={word}
               className={`preloader-word ${word === "Matter" ? "text-[#de4e4e]" : ""}`}
-              style={{ animationDelay: `${0.24 + index * 0.13}s` }}
+              style={{ animationDelay: `${0.34 + index * 0.16}s` }}
             >
               {word}
             </span>

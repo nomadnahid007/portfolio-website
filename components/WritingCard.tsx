@@ -21,6 +21,11 @@ export function WritingCard({ entry }: WritingCardProps) {
   return (
     <article id={entry.frontmatter.slug} className="rounded-[2rem] border border-line/80 bg-card/80 p-6 shadow-soft sm:p-8">
       <div className="flex flex-wrap items-center gap-3 text-sm text-muted">
+        {entry.frontmatter.publication ? (
+          <span className="rounded-full border border-accent/20 bg-accent/10 px-3 py-1 text-[0.7rem] font-medium uppercase tracking-[0.18em] text-accent">
+            {entry.frontmatter.publication}
+          </span>
+        ) : null}
         <span>{formatDate(entry.frontmatter.publishedAt)}</span>
         {entry.readingTime ? <span>{entry.readingTime}</span> : null}
       </div>

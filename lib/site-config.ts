@@ -28,9 +28,9 @@ export const navigation: NavigationItem[] = [
 
 export const sectionNavigation: SectionNavItem[] = [
   { id: "home", label: "Home" },
+  { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
   { id: "research", label: "Research" },
-  { id: "experience", label: "Experience" },
   { id: "skills", label: "Skills" },
   { id: "writing", label: "Writing" },
   { id: "about", label: "About" },
@@ -41,6 +41,7 @@ export const experience: TimelineItem[] = [
   {
     company: "Pathao Ltd. (Rides Team)",
     role: "Product Management Intern",
+    employmentType: "Full-time",
     period: "Jan 2026 - Present",
     location: "Dhaka, Bangladesh",
     summary: "Contributing to ride-product planning, feedback-driven improvements, and feature execution for Pathao's Rides platform.",
@@ -53,6 +54,7 @@ export const experience: TimelineItem[] = [
   {
     company: "BRAC University",
     role: "Undergraduate Teaching Assistant / Student Tutor",
+    employmentType: "Part-time",
     period: "Jun 2024 - Sep 2025",
     location: "Dhaka, Bangladesh",
     summary: "Supported students in Discrete Mathematics and Numerical Methods through tutoring, assessment feedback, and close faculty coordination.",
@@ -65,9 +67,12 @@ export const experience: TimelineItem[] = [
   {
     company: "BracU Express",
     role: "Contributing Writer and Journalist",
+    employmentType: "Part-time",
     period: "Mar 2024 - Jun 2025",
     location: "BRAC University",
     summary: "Covered campus stories, wrote feature pieces, and developed a stronger voice for audience-focused storytelling.",
+    href: "https://bracuexpress.com/author/nahid-hassan/",
+    hrefLabel: "View author archive",
     points: [
       "Produced articles and opinion pieces read by more than 1,000 students across BracU platforms.",
       "Used interviews with students and faculty to build well-grounded stories with clear human context.",
@@ -75,20 +80,9 @@ export const experience: TimelineItem[] = [
     ]
   },
   {
-    company: "BracU Esports Club",
-    role: "Assistant Secretary of Marketing and Communications",
-    period: "Sep 2024 - Jun 2025",
-    location: "BRAC University",
-    summary: "Led content coordination and promotional communication for events, tournaments, and community initiatives.",
-    points: [
-      "Created promotional content for tournaments and online events to improve engagement.",
-      "Coordinated a 20+ member content team to keep communication consistent and timely.",
-      "Balanced audience engagement goals with fast-moving event deadlines."
-    ]
-  },
-  {
     company: "ATZ Technologies",
     role: "Content Writer",
+    employmentType: "Part-time",
     period: "Jul 2021 - Oct 2021",
     location: "Dhaka, Bangladesh",
     summary: "Wrote SEO-focused web content and helped strengthen the company's digital presence.",

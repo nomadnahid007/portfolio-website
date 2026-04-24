@@ -7,6 +7,7 @@ import { ArrowUpRightIcon, FacebookIcon, GitHubIcon, LinkedInIcon, MailIcon } fr
 import { Preloader } from "@/components/Preloader";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Reveal } from "@/components/Reveal";
+import { ResearchThesisCard } from "@/components/ResearchThesisCard";
 import { RichText } from "@/components/RichText";
 import { Section } from "@/components/Section";
 import { Stagger, StaggerItem } from "@/components/Stagger";
@@ -54,13 +55,33 @@ const contactIconMap = {
 } as const;
 
 export default async function HomePage() {
-  const [projects, research, writing] = await Promise.all([
+  const [projects, thesisEntries, writing] = await Promise.all([
     getProjects(),
-    getResearchByKind("current-work"),
+    getResearchByKind("thesis"),
     getWritingEntries()
   ]);
 
   const currentProjects = projects.slice(0, 4);
+  const thesis = thesisEntries[0];
+  const featuredWriting = writing.filter((entry) => entry.frontmatter.featured).slice(0, 4);
+  const thesisDiagrams = thesis
+    ? [
+        thesis.frontmatter.diagram
+          ? {
+              src: thesis.frontmatter.diagram,
+              alt: "Detailed SPRINT methodology diagram covering the full adaptive pruning pipeline",
+              label: "Detailed full-pipeline diagram"
+            }
+          : null,
+        thesis.frontmatter.secondaryDiagram
+          ? {
+              src: thesis.frontmatter.secondaryDiagram,
+              alt: "Supplementary methodology diagram from the SPRINT undergraduate thesis",
+              label: "Supplementary methodology diagram"
+            }
+          : null
+      ].filter(Boolean) as { src: string; alt: string; label: string }[]
+    : [];
 
   return (
     <>
@@ -151,11 +172,11 @@ export default async function HomePage() {
               <div className="surface overflow-hidden rounded-[2rem] border border-line/80 p-3 shadow-soft sm:rounded-[2.75rem] sm:p-4">
                 <div className="relative aspect-[6/5] overflow-hidden rounded-[1.75rem] border border-line/70 sm:aspect-[4/5] sm:rounded-[2.2rem]">
                   <Image
-                    src="/images/nahid-hassan.jpg"
+                    src="/images/nahid-hassan-portrait.jpg"
                     alt="Portrait of Nahid Hassan"
                     fill
                     priority
-                    className="object-cover object-[64%_30%]"
+                    className="object-cover object-[62%_36%]"
                     sizes="(max-width: 1280px) 100vw, 42vw"
                   />
                 </div>
@@ -180,6 +201,15 @@ export default async function HomePage() {
       </section>
 
       <Section
+        id="experience"
+        eyebrow="Experience"
+        title="Work that blends product, communication, and execution."
+        description="My work has moved between product management, teaching, writing, and execution-heavy collaboration, with the same emphasis on clarity and follow-through."
+      >
+        <Timeline items={experience} />
+      </Section>
+
+      <Section
         id="projects"
         eyebrow="Projects"
         title="Academic and applied builds with real technical depth."
@@ -197,38 +227,42 @@ export default async function HomePage() {
       <Section
         id="research"
         eyebrow="Research"
-        title="Current investigations in LLMs, NLP, and student-facing systems."
-        description="My current research direction is grounded in educational tooling, language understanding, and practical ML systems that can support real users."
+        title="Undergraduate thesis on runtime-adaptive pruning for large language models."
+        description="My thesis work focuses on SPRINT, a sensitivity-guided framework for selecting structural pruning decisions at inference time using oracle labels, a learned router, and reinforcement learning."
       >
-        <div className="grid gap-6 lg:grid-cols-2">
-          {research.map(({ frontmatter, content }) => (
-            <Reveal key={frontmatter.slug}>
-              <article className="rounded-[2rem] border border-line/80 bg-card/80 p-6 shadow-soft sm:p-8">
-                <div className="flex flex-wrap gap-2">
-                  {frontmatter.tags.map((tag) => (
-                    <Tag key={tag}>{tag}</Tag>
-                  ))}
-                </div>
-                <h3 className="mt-6 font-serif text-3xl leading-tight">{frontmatter.title}</h3>
-                <p className="mt-3 text-sm uppercase tracking-[0.18em] text-muted">
-                  {frontmatter.period} | {frontmatter.status}
-                </p>
-                <div className="mt-6">
-                  <RichText>{content}</RichText>
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-      <Section
-        id="experience"
-        eyebrow="Experience"
-        title="Work that blends product, communication, and execution."
-        description="My work has moved between product management, teaching, writing, and student community leadership, with the same emphasis on clarity and follow-through."
-      >
-        <Timeline items={experience} />
+        {thesis ? (
+          <Reveal>
+            <ResearchThesisCard
+              title={thesis.frontmatter.title}
+              period={thesis.frontmatter.period}
+              status={thesis.frontmatter.status}
+              tags={thesis.frontmatter.tags}
+              summary={`${thesis.frontmatter.summary} Instead of compressing the model once and using the same structure for every prompt, the thesis explores how runtime signals can help choose different pruning actions based on complexity, hardware state, and quality-speed tradeoffs.`}
+              openInNewTabHref="/research"
+              diagrams={thesisDiagrams}
+              gist={
+                <>
+                  <p className="text-sm leading-7 text-foreground/84">
+                    The core pipeline combines oracle sensitivity labels, a learned complexity router, and a DDQN
+                    controller so the system can decide when to skip layers or prune attention heads while keeping
+                    degradation bounded.
+                  </p>
+                  <ul className="grid gap-3 text-sm leading-7 text-foreground/84">
+                    <li className="flex gap-3">
+                      <span className="mt-3 h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+                      <span>Built on a 10,000-prompt multi-domain benchmark spanning math, code, language modeling, and QA.</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="mt-3 h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+                      <span>Designed to deliver structural speed gains that are visible at inference time, not just sparse weights on paper.</span>
+                    </li>
+                  </ul>
+                </>
+              }
+              details={<RichText>{thesis.content}</RichText>}
+            />
+          </Reveal>
+        ) : null}
       </Section>
 
       <Section
@@ -289,15 +323,50 @@ export default async function HomePage() {
       <Section
         id="writing"
         eyebrow="Writing"
-        title="Writing shaped by tutoring, journalism, and product thinking."
-        description="Writing has been one of the ways I sharpen product thinking, explain technical systems, and make ideas more usable for other people."
+        title="Writing across campus journalism, culture, and literary publication."
+        description="I treat writing as part of how I think: reporting carefully, structuring ideas cleanly, and making the final piece feel human instead of generic."
       >
-        <div className="grid gap-6">
-          {writing.map((entry) => (
-            <Reveal key={entry.frontmatter.slug}>
-              <WritingCard entry={entry} />
+        <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
+          <div className="grid gap-6">
+            {featuredWriting.map((entry) => (
+              <Reveal key={entry.frontmatter.slug}>
+                <WritingCard entry={entry} />
+              </Reveal>
+            ))}
+            <Reveal delay={0.08}>
+              <div className="flex flex-wrap gap-3">
+                <Button href="/writing">Open writing archive</Button>
+                <Button href="/writing" target="_blank" variant="ghost">
+                  Open in new tab
+                </Button>
+              </div>
             </Reveal>
-          ))}
+          </div>
+          <Reveal delay={0.08}>
+            <aside className="overflow-hidden rounded-[2rem] border border-line/80 bg-card/82 shadow-soft">
+              <div className="relative aspect-[4/5]">
+                <Image
+                  src="/images/august-gift.jpg"
+                  alt="A birthday gift tied to Nahid Hassan's featured Sehri Tales write-up August"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 38vw"
+                />
+              </div>
+              <div className="space-y-4 p-6 sm:p-8">
+                <p className="text-xs uppercase tracking-[0.22em] text-accent">A Special Memory</p>
+                <h3 className="font-serif text-3xl leading-tight">A birthday gift connected to &quot;August&quot; and a writing milestone.</h3>
+                <p className="text-base leading-8 text-muted">
+                  This photo holds a personal story for me. It was a birthday gift from my friends Arpita, Nazifa,
+                  and Stella in 2024 after my Sehri Tales piece &quot;August&quot; was featured, and it remains one of the most
+                  meaningful reminders of why writing matters.
+                </p>
+                <Button href="https://www.thedailystar.net/star-literature/news/august-sehri-tales-selections-day-20-3579761">
+                  Read &quot;August&quot;
+                </Button>
+              </div>
+            </aside>
+          </Reveal>
         </div>
       </Section>
 
@@ -312,10 +381,10 @@ export default async function HomePage() {
             <div className="overflow-hidden rounded-[2.4rem] border border-line/80 bg-card/80 shadow-soft">
               <div className="relative aspect-[4/5]">
                 <Image
-                  src="/images/nahid-hassan.jpg"
+                  src="/images/nahid-hassan-about.png"
                   alt={siteConfig.name}
                   fill
-                  className="object-cover object-[59%_30%]"
+                  className="object-cover object-[58%_28%]"
                   sizes="(max-width: 1024px) 100vw, 40vw"
                 />
               </div>

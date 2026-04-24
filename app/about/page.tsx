@@ -27,10 +27,10 @@ export default function AboutPage() {
         <div className="overflow-hidden rounded-[2.5rem] border border-line/80 bg-card shadow-soft">
           <div className="relative aspect-[4/5]">
             <Image
-              src="/images/nahid-hassan.jpg"
+              src="/images/nahid-hassan-about.png"
               alt={siteConfig.name}
               fill
-              className="object-cover object-[58%_30%]"
+              className="object-cover object-[58%_28%]"
               sizes="(max-width: 1024px) 100vw, 42vw"
               priority
             />

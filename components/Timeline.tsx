@@ -14,9 +14,23 @@ export function Timeline({ items }: TimelineProps) {
             <div>
               <p className="text-sm uppercase tracking-[0.18em] text-accent">{item.period}</p>
               <h3 className="mt-2 font-serif text-3xl leading-tight">{item.role}</h3>
+              {item.employmentType ? (
+                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted">{item.employmentType}</p>
+              ) : null}
               <p className="mt-1 text-base text-muted">
                 {item.company} | {item.location}
               </p>
+              {item.href ? (
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-foreground underline decoration-accent/60 underline-offset-4"
+                  data-cursor="interactive"
+                >
+                  {item.hrefLabel ?? "Open link"} <span aria-hidden="true">-&gt;</span>
+                </a>
+              ) : null}
             </div>
             <p className="max-w-sm text-sm leading-7 text-muted">{item.summary}</p>
           </div>

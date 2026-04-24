@@ -1,0 +1,44 @@
+---
+title: "Undergraduate Thesis: SPRINT - Sensitivity-guided Pruning for Inference-Time Adaptation of LLMs"
+slug: "undergraduate-thesis-sprint"
+kind: "thesis"
+summary: "A runtime-adaptive framework for selecting structural pruning intensity per prompt using oracle sensitivity labels, a learned router, and a DDQN controller."
+period: "June 2025 - April 2026"
+status: "Completed"
+tags:
+  - "LLMs"
+  - "Structural Pruning"
+  - "Reinforcement Learning"
+  - "Adaptive Inference"
+diagram: "/images/research-sprint-methodology-extracted-134.png"
+secondaryDiagram: "/images/research-sprint-methodology-workspace.png"
+---
+
+This thesis explores how large language models can adapt their pruning configuration at inference time instead of relying on one static compression profile for every prompt and every hardware condition.
+
+## Thesis focus
+
+The work introduces **SPRINT**: a sensitivity-guided pruning framework for inference-time adaptation of LLMs. The core idea is to decide pruning strength per prompt by combining three signals:
+
+- oracle sensitivity labels measured from dense-versus-pruned behavior on the target backbone,
+- a **Learned Complexity Router (LCR)** that predicts prompt sensitivity online,
+- and a **DDQN-based controller** that reads router output together with live hardware telemetry and early backbone signals.
+
+## Problem addressed
+
+Large language models are powerful, but they are expensive to run on consumer or edge hardware. Static compression methods can reduce model size, yet they apply the same pruning level to every prompt regardless of prompt difficulty, latency constraints, or device state. That mismatch often wastes compute on easy prompts and harms output quality on difficult ones.
+
+## What the thesis contributes
+
+- A balanced **10,000-prompt oracle dataset** covering GSM8K, MBPP, WikiText-2, MMLU, and BoolQ.
+- A **BERT-mini-based LCR** trained to estimate prompt sensitivity to pruning before inference.
+- A **DDQN controller** that selects from a discrete action space of structural pruning options at runtime.
+- A **physically correct pruning engine** that removes transformer layers to produce real latency gains rather than only weight sparsity.
+
+## Reported outcome
+
+Across the evaluation reported in the thesis, SPRINT achieved meaningful runtime savings while keeping quality degradation bounded. The final system demonstrated strong router correlation with oracle labels and delivered real end-to-end inference speedup by selecting structural pruning actions dynamically instead of locking the model into one static configuration.
+
+## Why it matters to me
+
+This project brought together several interests of mine at once: systems thinking, efficient AI, research methodology, and building for real-world constraints. It also shaped how I think about practical LLM deployment, especially when the goal is not just stronger models, but models that can remain useful on ordinary hardware.

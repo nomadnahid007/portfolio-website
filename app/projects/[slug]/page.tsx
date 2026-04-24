@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { ArrowUpRightIcon, GitHubIcon, GlobeIcon, PlayIcon } from "@/components/Icons";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { RichText } from "@/components/RichText";
@@ -35,6 +36,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function ProjectDetailPage({ params }: PageProps) {
   const { slug } = await params;
   const project = await getProjectBySlug(slug);
+  const iconMap = {
+    github: GitHubIcon,
+    demo: PlayIcon,
+    live: GlobeIcon,
+    external: ArrowUpRightIcon
+  } as const;
 
   if (!project) {
     notFound();
@@ -73,6 +80,26 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 <dd className="mt-2 text-base leading-7 text-foreground">{project.frontmatter.outcome}</dd>
               </div>
             </dl>
+            {project.frontmatter.links?.length ? (
+              <div className="mt-8 flex flex-wrap gap-2">
+                {project.frontmatter.links.map((link) => {
+                  const Icon = iconMap[link.kind ?? "external"];
+                  return (
+                    <a
+                      key={`${project.frontmatter.slug}-${link.href}`}
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full border border-line/80 bg-background/65 px-3 py-2 text-xs uppercase tracking-[0.14em] text-muted transition hover:border-accent/35 hover:text-foreground"
+                      data-cursor="interactive"
+                    >
+                      <Icon className="h-4 w-4" />
+                      <span>{link.label}</span>
+                    </a>
+                  );
+                })}
+              </div>
+            ) : null}
             <Button href="/projects" variant="ghost" className="mt-8 w-full justify-center">
               Back to projects
             </Button>

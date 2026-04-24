@@ -12,7 +12,13 @@ export type ProjectFrontmatter = {
   featured: boolean;
   order: number;
   cover: string;
+  hoverCover?: string;
   outcome: string;
+  links?: {
+    label: string;
+    href: string;
+    kind?: "github" | "demo" | "live" | "external";
+  }[];
 };
 
 export type ResearchFrontmatter = {
@@ -23,6 +29,10 @@ export type ResearchFrontmatter = {
   period: string;
   status: string;
   tags: string[];
+  diagram?: string;
+  secondaryDiagram?: string;
+  paperUrl?: string;
+  companionUrl?: string;
 };
 
 export type WritingFrontmatter = {
@@ -30,6 +40,7 @@ export type WritingFrontmatter = {
   slug: string;
   summary: string;
   publishedAt: string;
+  publication?: string;
   externalUrl?: string;
   featured: boolean;
   tags: string[];
@@ -57,10 +68,13 @@ export type SectionNavItem = {
 export type TimelineItem = {
   company: string;
   role: string;
+  employmentType?: "Full-time" | "Part-time";
   period: string;
   location: string;
   summary: string;
   points: string[];
+  href?: string;
+  hrefLabel?: string;
 };
 
 export type SkillGroup = {

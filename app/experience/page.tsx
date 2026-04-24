@@ -13,7 +13,7 @@ export default function ExperiencePage() {
     <>
       <PageIntro
         eyebrow="Experience"
-        title="Experience across product, teaching, writing, and student leadership."
+        title="Experience across product, teaching, writing, and execution."
         description="My experience combines structured product work, academic support, writing, and team coordination. The common thread is making information more useful to people."
       />
       <div className="mx-auto w-full max-w-[1220px] px-5 pb-24 sm:px-8 lg:px-10">

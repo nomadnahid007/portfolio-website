@@ -13,15 +13,14 @@ const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 function applyTheme(theme: Theme) {
   document.documentElement.dataset.theme = theme;
-  window.localStorage.setItem("theme", theme);
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
-    const current = (document.documentElement.dataset.theme as Theme | undefined) ?? "dark";
-    setTheme(current);
+    document.documentElement.dataset.theme = "dark";
+    setTheme("dark");
   }, []);
 
   useEffect(() => {

@@ -15,25 +15,29 @@ export function LenisProvider() {
     }
 
     const boot = async () => {
-      const { default: Lenis } = await import("lenis");
+      try {
+        const { default: Lenis } = await import("lenis");
 
-      if (cancelled) {
-        return;
-      }
+        if (cancelled) {
+          return;
+        }
 
-      lenis = new Lenis({
-        duration: 0.85,
-        lerp: 0.085,
-        smoothWheel: true,
-        wheelMultiplier: 0.92
-      });
+        lenis = new Lenis({
+          duration: 0.85,
+          lerp: 0.085,
+          smoothWheel: true,
+          wheelMultiplier: 0.92
+        });
 
-      const raf = (time: number) => {
-        lenis?.raf(time);
+        const raf = (time: number) => {
+          lenis?.raf(time);
+          frame = window.requestAnimationFrame(raf);
+        };
+
         frame = window.requestAnimationFrame(raf);
-      };
-
-      frame = window.requestAnimationFrame(raf);
+      } catch {
+        // Gracefully skip smooth scrolling if the enhancement chunk cannot be loaded.
+      }
     };
 
     void boot();

@@ -1,14 +1,7 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-
-const DeferredEnhancements = dynamic(
-  () => import("@/components/Enhancements").then((module) => module.Enhancements),
-  {
-    ssr: false
-  }
-);
+import { Enhancements } from "@/components/Enhancements";
 
 export function AppProviders() {
   const [ready, setReady] = useState(false);
@@ -37,5 +30,5 @@ export function AppProviders() {
     };
   }, []);
 
-  return ready ? <DeferredEnhancements /> : null;
+  return ready ? <Enhancements /> : null;
 }

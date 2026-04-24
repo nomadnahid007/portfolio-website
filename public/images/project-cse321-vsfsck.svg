@@ -1,0 +1,28 @@
+<svg width="1600" height="1100" viewBox="0 0 1600 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1100" rx="56" fill="#F5F1E8"/>
+  <rect x="86" y="94" width="1428" height="912" rx="42" fill="#FFFDFC" stroke="#D9D0C2" stroke-width="2"/>
+  <text x="132" y="184" fill="#1B2433" font-family="Georgia, serif" font-size="54">CSE321 VSFS Consistency Checker</text>
+  <text x="132" y="236" fill="#A65443" font-family="Arial, sans-serif" font-size="24" letter-spacing="4">FILESYSTEM INTEGRITY / OPERATING SYSTEMS</text>
+  <rect x="134" y="304" width="384" height="258" rx="28" fill="#FBF7F1" stroke="#D8CFC4" stroke-width="2"/>
+  <text x="170" y="364" fill="#1B2433" font-family="Arial, sans-serif" font-size="28">Checks</text>
+  <text x="170" y="430" fill="#56657C" font-family="Arial, sans-serif" font-size="24">Superblock validation</text>
+  <text x="170" y="484" fill="#56657C" font-family="Arial, sans-serif" font-size="24">Inode bitmap integrity</text>
+  <text x="170" y="538" fill="#56657C" font-family="Arial, sans-serif" font-size="24">Data bitmap consistency</text>
+  <rect x="536" y="304" width="520" height="520" rx="28" fill="#101726"/>
+  <text x="572" y="376" fill="#F1F5FB" font-family="Courier New, monospace" font-size="28">vsfsck vsfs.img</text>
+  <text x="572" y="454" fill="#F16A5B" font-family="Courier New, monospace" font-size="20">[OK] superblock layout verified</text>
+  <text x="572" y="512" fill="#F16A5B" font-family="Courier New, monospace" font-size="20">[OK] inode bitmap matches valid inodes</text>
+  <text x="572" y="570" fill="#F16A5B" font-family="Courier New, monospace" font-size="20">[WARN] duplicate block reference found</text>
+  <text x="572" y="628" fill="#F16A5B" font-family="Courier New, monospace" font-size="20">[WARN] block index out of range</text>
+  <text x="572" y="686" fill="#F16A5B" font-family="Courier New, monospace" font-size="20">[DONE] repaired image revalidated</text>
+  <rect x="1080" y="304" width="300" height="258" rx="28" fill="#F8F3EB" stroke="#D8CFC4" stroke-width="2"/>
+  <text x="1122" y="364" fill="#1B2433" font-family="Arial, sans-serif" font-size="28">Focus Areas</text>
+  <text x="1122" y="430" fill="#56657C" font-family="Arial, sans-serif" font-size="24">Duplicate blocks</text>
+  <text x="1122" y="484" fill="#56657C" font-family="Arial, sans-serif" font-size="24">Bad blocks</text>
+  <text x="1122" y="538" fill="#56657C" font-family="Arial, sans-serif" font-size="24">Metadata repair</text>
+  <rect x="134" y="620" width="384" height="204" rx="28" fill="#FBF7F1" stroke="#D8CFC4" stroke-width="2"/>
+  <text x="170" y="690" fill="#1B2433" font-family="Arial, sans-serif" font-size="28">Course</text>
+  <text x="170" y="748" fill="#56657C" font-family="Arial, sans-serif" font-size="24">BRAC University</text>
+  <text x="170" y="794" fill="#56657C" font-family="Arial, sans-serif" font-size="24">CSE321 Operating Systems</text>
+  <text x="132" y="930" fill="#6C5F53" font-family="Arial, sans-serif" font-size="24">Custom VSFS checker for corrupted filesystem images and metadata consistency analysis</text>
+</svg>

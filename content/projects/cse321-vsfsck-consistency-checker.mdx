@@ -1,0 +1,65 @@
+---
+title: "CSE321 VSFS Consistency Checker"
+slug: "cse321-vsfsck-consistency-checker"
+summary: "A file system consistency checker for a custom VSFS image built for BRAC University's CSE321 Operating Systems course."
+year: "2024"
+role: "Systems Programming Project"
+client: "CSE321 Operating Systems"
+stack:
+  - "C"
+  - "File Systems"
+  - "VSFS"
+  - "Operating Systems"
+featured: false
+order: 7
+cover: "/images/project-cse321-vsfsck.svg"
+outcome: "Built a checker that validated superblock metadata, bitmaps, inode references, duplicate blocks, and bad block conditions in a corrupted file system image."
+links:
+  - label: "GitHub"
+    href: "https://github.com/nomadnahid007/cse321_projects"
+    kind: "github"
+---
+
+## Problem
+
+File systems can silently fail when metadata, block references, or allocation maps become inconsistent. Detecting those structural errors requires a tool that can reason about the integrity of the file system as a whole.
+
+## Context
+
+This project was completed as part of **CSE321: Operating Systems** at BRAC University with my teammates **MD Shahadat Hossain Shamim** and **Aowfi Adon Foraejy**. We were asked to design and implement `vsfsck`, a consistency checker for a custom virtual file system image.
+
+## Goal
+
+Build a checker that could analyze a corrupted `vsfs.img`, identify inconsistencies, and help restore the file system to a valid state.
+
+## Solution
+
+The checker focused on validating the core structures of the custom file system:
+
+- Superblock fields such as magic number, block size, block count, and layout pointers.
+- Data bitmap consistency between used blocks and inode references.
+- Inode bitmap consistency for valid inodes and allocation state.
+- Duplicate block references across multiple inodes.
+- Bad block detection for out-of-range data block indices.
+
+## Process
+
+We started by understanding the structure of the VSFS image and the rules that define a valid layout. From there, we implemented targeted validation checks and used the corrupted image to test whether our tool could reliably surface structural problems.
+
+## Challenges
+
+The difficult part was not just checking individual fields, but making sure the relationships between metadata structures were consistent. Bitmaps, inode state, and data-block references all had to agree with one another.
+
+## Outcomes
+
+- Built a working `vsfsck` consistency checker for the CSE321 operating systems course.
+- Validated superblock, inode, data block, and bitmap integrity in a corrupted file system image.
+- Gained practical experience with file-system structure, metadata validation, and low-level debugging.
+
+## Links
+
+- [GitHub repository](https://github.com/nomadnahid007/cse321_projects)
+
+## Reflection
+
+This project pushed me deeper into how storage systems maintain trust. It reinforced that systems programming is often about validating assumptions between components, not just making one function work in isolation.

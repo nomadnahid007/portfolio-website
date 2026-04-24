@@ -1,8 +1,8 @@
 export const homeHighlights = [
   {
     label: "Projects",
-    value: "05",
-    description: "Academic and applied builds spanning product workflows, web platforms, NLP, and graphics."
+    value: "07",
+    description: "Academic and applied builds spanning product workflows, web platforms, NLP, graphics, and operating systems."
   },
   {
     label: "Students Tutored",

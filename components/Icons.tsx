@@ -86,3 +86,23 @@ export function GitHubIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function GlobeIcon(props: IconProps) {
+  return (
+    <svg {...baseProps(props)}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3.5 12h17" />
+      <path d="M12 3a14.4 14.4 0 0 1 0 18" />
+      <path d="M12 3a14.4 14.4 0 0 0 0 18" />
+    </svg>
+  );
+}
+
+export function PlayIcon(props: IconProps) {
+  return (
+    <svg {...baseProps(props)}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="m10 8 6 4-6 4V8Z" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
