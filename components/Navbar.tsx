@@ -44,33 +44,38 @@ export function Navbar() {
       return;
     }
 
-    const sections = sectionNavigation
-      .map((item) => document.getElementById(item.id))
-      .filter(Boolean) as HTMLElement[];
+    const getSections = () =>
+      sectionNavigation
+        .map((item) => document.getElementById(item.id))
+        .filter(Boolean) as HTMLElement[];
 
-    if (sections.length === 0) {
-      return;
-    }
+    const updateActiveSection = () => {
+      const sections = getSections();
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-        if (visible?.target.id) {
-          setActiveSection(visible.target.id);
-        }
-      },
-      {
-        rootMargin: "-35% 0px -45% 0px",
-        threshold: [0.2, 0.35, 0.5, 0.7]
+      if (!sections.length) {
+        return;
       }
-    );
 
-    sections.forEach((section) => observer.observe(section));
+      const scrollAnchor = window.scrollY + 148;
+      let currentSection = "home";
 
-    return () => observer.disconnect();
+      for (const section of sections) {
+        if (section.offsetTop <= scrollAnchor) {
+          currentSection = section.id;
+        }
+      }
+
+      setActiveSection(currentSection);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
   }, [pathname]);
 
   const handleNavigate = (id: string) => {
